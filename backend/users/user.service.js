@@ -25,25 +25,10 @@ async function authenticate({ username, password }) {
             token
         };
     }
-    
-    // const user = await User.findOne({ username });
-    // if (user && bcrypt.compareSync(password, user.hash)) {
-    //     const { hash, ...userWithoutHash } = user.toObject();
-    //     const token = jwt.sign({ sub: user.id }, config.secret);
-    //     return {
-    //         ...userWithoutHash,
-    //         token
-    //     };
-    // }
 }
 
 async function getAll() {
     return await User.find().select('-hash');
-}
-
-async function getAudit() {
-
-    // return await User.find().select('-hash');
 }
 
 async function getById(id) {

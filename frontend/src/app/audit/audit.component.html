@@ -4,8 +4,8 @@
 <ul>
     <li *ngFor="let user of users">
         {{user.username}} ({{user.firstName}} {{user.lastName}}) 
-        <!-- -
-        {{user.loginTime}} {{user.logoutTime}} {{user.IP}} -->
+        - {{user.role}} -
+        {{user.loginTime}} {{user.logoutTime}} {{user.IP}}
         - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
     </li>
 </ul>

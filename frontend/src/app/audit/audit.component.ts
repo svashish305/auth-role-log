@@ -4,7 +4,7 @@ import { first } from 'rxjs/operators';
 import { User } from '@/_models';
 import { UserService, AuthenticationService } from '@/_services';
 
-@Component({ templateUrl: 'home.component.html' })
+@Component({ templateUrl: 'audit.component.html' })
 export class AuditComponent implements OnInit {
     currentUser: User;
     users = [];

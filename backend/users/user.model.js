@@ -10,7 +10,7 @@ const schema = new Schema({
     role: { type: String, default: 'User' },
     loginTime: { type: Date, default: Date.now },
     logoutTime: { type: Date, default: Date.now },
-    IP: { type: String, default: 'localhost' }
+    IP: { type: String }
 });
 
 schema.set('toJSON', { virtuals: true });

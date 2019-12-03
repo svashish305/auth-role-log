@@ -13,6 +13,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';
+import { AuditComponent } from './audit';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { AlertComponent } from './_components';
     declarations: [
         AppComponent,
         HomeComponent,
+        AuditComponent,
         LoginComponent,
         RegisterComponent,
         AlertComponent

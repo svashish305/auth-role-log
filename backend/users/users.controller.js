@@ -18,7 +18,17 @@ module.exports = router;
 
 function authenticate(req, res, next) {
     userService.authenticate(req.body)
-        .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
+        .then(user => {
+            if (user) {
+                user.loginTime = Date.now().toString()
+                user.IP = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+                console.log(user)
+                res.json(user)
+            }
+            else {
+                res.status(400).json({ message: 'Username or password is incorrect' })
+            }
+        })
         .catch(err => next(err));
 }
 
@@ -30,12 +40,6 @@ function register(req, res, next) {
 
 function getAll(req, res, next) {
     userService.getAll()
-        .then(users => res.json(users))
-        .catch(err => next(err));
-}
-
-function getAudit(req, res, next) {
-    userService.getAudit()
         .then(users => res.json(users))
         .catch(err => next(err));
 }
