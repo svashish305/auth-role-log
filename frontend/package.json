@@ -9,7 +9,7 @@
         "build": "webpack --mode production",
         "start": "webpack-dev-server --mode development --open",
         "start-dev": "ng serve",
-        "start-proxy": "ng serve --proxy-config proxy.conf.json"
+        "start-proxy": "webpack-dev-server --mode development --proxy-config proxy.conf.json --open"
     },
     "license": "MIT",
     "dependencies": {
