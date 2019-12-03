@@ -1,0 +1,23 @@
+{
+  "name": "auth-asgmt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd backend && npm run start-dev\" \"cd frontend && npm run start-proxy\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svashish305/auth-role-log.git"
+  },
+  "author": "Shubhashish Verma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/svashish305/auth-role-log/issues"
+  },
+  "homepage": "https://github.com/svashish305/auth-role-log#readme",
+  "devDependencies": {
+    "concurrently": "^5.0.0"
+  }
+}
