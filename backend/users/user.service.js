@@ -1,5 +1,6 @@
 ﻿const config = require('config.json');
 const jwt = require('jsonwebtoken');
+const Role = require('_helpers/role');
 const bcrypt = require('bcryptjs');
 const db = require('_helpers/db');
 const User = db.User;
@@ -7,6 +8,7 @@ const User = db.User;
 module.exports = {
     authenticate,
     getAll,
+    getAudit,
     getById,
     create,
     update,
@@ -17,16 +19,31 @@ async function authenticate({ username, password }) {
     const user = await User.findOne({ username });
     if (user && bcrypt.compareSync(password, user.hash)) {
         const { hash, ...userWithoutHash } = user.toObject();
-        const token = jwt.sign({ sub: user.id }, config.secret);
+        const token = jwt.sign({ sub: user.id, role: user.role }, config.secret);
         return {
             ...userWithoutHash,
             token
         };
     }
+    
+    // const user = await User.findOne({ username });
+    // if (user && bcrypt.compareSync(password, user.hash)) {
+    //     const { hash, ...userWithoutHash } = user.toObject();
+    //     const token = jwt.sign({ sub: user.id }, config.secret);
+    //     return {
+    //         ...userWithoutHash,
+    //         token
+    //     };
+    // }
 }
 
 async function getAll() {
     return await User.find().select('-hash');
+}
+
+async function getAudit() {
+
+    // return await User.find().select('-hash');
 }
 
 async function getById(id) {

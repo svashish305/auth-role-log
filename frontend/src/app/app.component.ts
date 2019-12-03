@@ -18,6 +18,7 @@ export class AppComponent {
     }
 
     logout() {
+        this.currentUser.logoutTime = Date.now().toString()
         this.authenticationService.logout();
         this.router.navigate(['/login']);
     }
