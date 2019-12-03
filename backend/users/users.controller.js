@@ -8,7 +8,7 @@ const Role = require('_helpers/role');
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/', getAll);
-router.get('/audit', authorize(Role.Auditor), getAudit);
+router.get('/audit', authorize(Role.Auditor), getAll);
 router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
