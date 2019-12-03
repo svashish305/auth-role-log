@@ -22,7 +22,7 @@ function authenticate(req, res, next) {
             if (user) {
                 user.loginTime = Date.now().toString()
                 user.IP = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-                console.log(user)
+                // console.log(user)
                 res.json(user)
             }
             else {
