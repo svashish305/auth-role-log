@@ -20,9 +20,9 @@ function authenticate(req, res, next) {
     userService.authenticate(req.body)
         .then(user => {
             if (user) {
-                user.loginTime = Date.now().toString()
-                user.IP = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-                // console.log(user)
+                user.loginTime = (new Date(Date.now())).toISOString()  
+                user.IP = req.ip.toString() || req.headers['x-forwarded-for'] || req.connection.remoteAddress.toString();
+                userService.update(user._id, user).then(res => {}).catch(err => console.log('update failed', err))
                 res.json(user)
             }
             else {
@@ -63,7 +63,10 @@ function getById(req, res, next) {
 
 function update(req, res, next) {
     userService.update(req.params.id, req.body)
-        .then(() => res.json({}))
+        .then(() => {
+            console.log(req.body)
+            res.json({})
+        })
         .catch(err => next(err));
 }
 

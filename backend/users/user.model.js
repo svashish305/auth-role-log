@@ -8,8 +8,8 @@ const schema = new Schema({
     lastName: { type: String, required: true },
     createdDate: { type: Date, default: Date.now },
     role: { type: String, default: 'User' },
-    loginTime: { type: Date, default: Date.now },
-    logoutTime: { type: Date, default: Date.now },
+    loginTime: { type: String },
+    logoutTime: { type: String },
     IP: { type: String }
 });
 

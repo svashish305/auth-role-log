@@ -23,25 +23,22 @@ export class AuthenticationService {
         return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
             .pipe(map(user => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                user.loginTime = Date.now().toString()
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
                 return user;
             }));
     }
 
-    logout() {
+    logout(user) {
         // remove user from local storage and set current user to null
-        this.currentUserSubject.subscribe(user => {
-            return this.http.post<any>(`${config.apiUrl}/users/update`, user)
-            .pipe(map(user => {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                user.logoutTime = Date.now().toString()
-                console.log('logging out ', user)
-                return user;
-            }));
-        });
+        user.logoutTime = new Date().toISOString() 
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+        return this.http.post<any>(`${config.apiUrl}/users/update`, user._id, user)
+        .pipe(map(user => {
+            console.log(user)
+            return user;
+        }));
+        
     }
 }
