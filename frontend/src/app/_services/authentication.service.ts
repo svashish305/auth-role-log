@@ -34,9 +34,9 @@ export class AuthenticationService {
         user.logoutTime = new Date().toISOString() 
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
-        return this.http.post<any>(`${config.apiUrl}/users/update`, user._id, user)
+        // console.log(user)
+        return this.http.post<any>(`${config.apiUrl}/users/update`, user)
         .pipe(map(user => {
-            console.log(user)
             return user;
         }));
         
