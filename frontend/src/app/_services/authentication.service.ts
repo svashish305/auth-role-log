@@ -36,7 +36,9 @@ export class AuthenticationService {
         this.currentUserSubject.next(null);
         // console.log(user)
         return this.http.post<any>(`${config.apiUrl}/users/update`, user)
-        .pipe(map(user => {
+        .pipe(
+            map(user => {
+            console.log('post call ', user)
             return user;
         }));
         
